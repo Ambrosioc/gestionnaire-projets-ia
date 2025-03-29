@@ -5,7 +5,6 @@ import { CSS } from '@dnd-kit/utilities';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Trash2 } from 'lucide-react';
-import { motion } from 'framer-motion';
 import {
   Card,
   CardContent,
@@ -56,75 +55,66 @@ export function KanbanTask({ task, onDelete }: KanbanTaskProps) {
   };
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.2 }}
+    <Card
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="cursor-grab active:cursor-grabbing"
     >
-      <Card
-        ref={setNodeRef}
-        style={style}
-        {...attributes}
-        {...listeners}
-        className="cursor-grab active:cursor-grabbing"
-      >
-        <CardHeader className="p-4">
-          <div className="flex items-start justify-between">
-            <div>
-              <CardTitle className="text-base">{task.title}</CardTitle>
-              <CardDescription>
-                {task.project ? `${task.project.name} - ` : ''}
-                {task.deadline &&
-                  format(new Date(task.deadline), 'dd MMMM yyyy', {
-                    locale: fr,
-                  })}
-              </CardDescription>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-6 w-6"
-              onClick={handleDelete}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
+      <CardHeader className="p-4">
+        <div className="flex items-start justify-between">
+          <div>
+            <CardTitle className="text-base">{task.title}</CardTitle>
+            <CardDescription>
+              {task.project ? `${task.project.name} - ` : ''}
+              {task.deadline &&
+                format(new Date(task.deadline), 'dd MMMM yyyy', {
+                  locale: fr,
+                })}
+            </CardDescription>
           </div>
-        </CardHeader>
-        <CardContent className="p-4 pt-0">
-          {task.description && (
-            <p className="text-sm text-muted-foreground mb-2">
-              {task.description}
-            </p>
-          )}
-          <div className="flex flex-wrap gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6"
+            onClick={handleDelete}
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent className="p-4 pt-0">
+        {task.description && (
+          <p className="text-sm text-muted-foreground mb-2">
+            {task.description}
+          </p>
+        )}
+        <div className="flex flex-wrap gap-1">
+          <Badge
+            variant="outline"
+            style={{
+              backgroundColor: getPriorityColor(task.priority),
+              color: 'white',
+            }}
+          >
+            {getPriorityLabel(task.priority)}
+          </Badge>
+          {task.tags?.map((tag) => (
             <Badge
+              key={tag.id}
               variant="outline"
               style={{
-                backgroundColor: getPriorityColor(task.priority),
+                backgroundColor: tag.color,
                 color: 'white',
               }}
             >
-              {getPriorityLabel(task.priority)}
+              {tag.name}
             </Badge>
-            {task.tags?.map((tag) => (
-              <Badge
-                key={tag.id}
-                variant="outline"
-                style={{
-                  backgroundColor: tag.color,
-                  color: 'white',
-                }}
-              >
-                {tag.name}
-              </Badge>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 

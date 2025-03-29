@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { motion } from 'framer-motion';
 import {
   Card,
   CardContent,
@@ -70,62 +69,48 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
 
   return (
     <>
-      <motion.div
-        layout
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.2 }}
-      >
-        <Card>
-          <CardHeader>
-            <div className="flex justify-between items-start">
-              <div>
-                <CardTitle>{project.name}</CardTitle>
-                <CardDescription>
-                  Créé le{' '}
-                  {format(new Date(project.created_at), 'dd MMMM yyyy', {
-                    locale: fr,
-                  })}
-                </CardDescription>
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsEditDialogOpen(true)}
-                >
-                  <Pencil className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsDeleteDialogOpen(true)}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </div>
+      <Card>
+        <CardHeader>
+          <div className="flex justify-between items-start">
+            <div>
+              <CardTitle>{project.name}</CardTitle>
+              <CardDescription>
+                Créé le{' '}
+                {format(new Date(project.created_at), 'dd MMMM yyyy', {
+                  locale: fr,
+                })}
+              </CardDescription>
             </div>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">{project.description}</p>
-            {project.ai_description && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                transition={{ duration: 0.3 }}
-                className="mt-4"
+            <div className="flex gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsEditDialogOpen(true)}
               >
-                <h4 className="text-sm font-semibold">Description IA</h4>
-                <p className="text-sm text-muted-foreground">
-                  {project.ai_description}
-                </p>
-              </motion.div>
-            )}
-          </CardContent>
-        </Card>
-      </motion.div>
+                <Pencil className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsDeleteDialogOpen(true)}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">{project.description}</p>
+          {project.ai_description && (
+            <div className="mt-4">
+              <h4 className="text-sm font-semibold">Description IA</h4>
+              <p className="text-sm text-muted-foreground">
+                {project.ai_description}
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       <AlertDialog
         open={isDeleteDialogOpen}

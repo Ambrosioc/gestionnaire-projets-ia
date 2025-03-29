@@ -1,10 +1,9 @@
-// app/layout.tsx
-import { Providers } from '@/components/providers';
-import { Toaster } from '@/components/ui/sonner';
+import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Providers } from '@/components/providers';
+import { Toaster } from '@/components/ui/sonner';
 import Script from 'next/script';
-import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,20 +12,18 @@ export const metadata: Metadata = {
   description: 'Manage your freelance projects with AI assistance',
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
-  const locale = params.locale || 'fr'; // Définissez une locale par défaut
-  const messages = (await import(`../messages/${locale}.json`)).default;
-
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <Script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />
+        <Script
+          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+          async
+        />
         <Script id="onesignal-init">
           {`
             window.OneSignal = window.OneSignal || [];
@@ -39,7 +36,7 @@ export default async function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
-        <Providers locale={locale} messages={messages}>
+        <Providers>
           {children}
           <Toaster />
         </Providers>

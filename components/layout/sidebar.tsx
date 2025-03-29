@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { UserNav } from './user-nav';
-import { LanguageSwitcher } from '../language-switcher';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -24,10 +23,7 @@ export function Sidebar() {
           <Brain className="h-6 w-6" />
           <span className="font-semibold">AI PM</span>
         </Link>
-        <div className="flex items-center space-x-4">
-          <LanguageSwitcher />
-          <UserNav />
-        </div>
+        <UserNav />
       </div>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
