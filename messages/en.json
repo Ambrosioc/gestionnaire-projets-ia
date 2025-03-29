@@ -1,0 +1,111 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation successful",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "tasks": "Tasks",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "stats": {
+      "activeProjects": "Active Projects",
+      "completedTasks": "Completed Tasks",
+      "completedProjects": "Completed Projects",
+      "productivity": "Productivity"
+    },
+    "overview": {
+      "title": "Tasks by Day",
+      "noData": "No data available"
+    },
+    "recentProjects": {
+      "title": "Recent Projects",
+      "noProjects": "No recent projects"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "new": "New Project",
+    "name": "Project Name",
+    "description": "Description",
+    "status": "Status",
+    "brief": "Brief",
+    "aiDescription": "AI Description",
+    "deleteConfirm": "Are you sure you want to delete this project?",
+    "deleteWarning": "This action cannot be undone"
+  },
+  "tasks": {
+    "title": "Tasks",
+    "new": "New Task",
+    "name": "Task Name",
+    "description": "Description",
+    "status": "Status",
+    "priority": "Priority",
+    "deadline": "Deadline",
+    "project": "Project",
+    "tags": "Tags",
+    "filters": {
+      "status": "Filter by status",
+      "priority": "Filter by priority",
+      "deadline": "Filter by deadline",
+      "search": "Search for a task"
+    },
+    "priorities": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "statuses": {
+      "todo": "To Do",
+      "inProgress": "In Progress",
+      "review": "In Review",
+      "done": "Done"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your preferences and account settings",
+    "profile": {
+      "title": "Personal Information",
+      "subtitle": "Update your personal information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "weeklyReport": "Weekly Report",
+      "weeklyReportDesc": "Receive a weekly summary of your activity by email",
+      "push": "Push Notifications",
+      "pushDesc": "Receive notifications for important tasks and deadlines"
+    },
+    "danger": {
+      "title": "Danger Zone",
+      "subtitle": "Irreversible actions for your account",
+      "deleteAccount": "Delete Account",
+      "deleteConfirm": "Are you absolutely sure?",
+      "deleteWarning": "This action is irreversible. All your data will be permanently deleted."
+    }
+  }
+}

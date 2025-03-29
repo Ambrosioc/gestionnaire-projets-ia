@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import { Providers } from '@/components/providers';
 import { Toaster } from '@/components/ui/sonner';
 import Script from 'next/script';
+import { NextIntlClientProvider } from 'next-intl';
+import { notFound } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,13 +14,26 @@ export const metadata: Metadata = {
   description: 'Manage your freelance projects with AI assistance',
 };
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'fr' }];
+}
+
+export default async function RootLayout({
   children,
+  params: { locale },
 }: {
   children: React.ReactNode;
+  params: { locale: string };
 }) {
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <Script
           src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
@@ -36,10 +51,12 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
-        <Providers>
-          {children}
-          <Toaster />
-        </Providers>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>
+            {children}
+            <Toaster />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

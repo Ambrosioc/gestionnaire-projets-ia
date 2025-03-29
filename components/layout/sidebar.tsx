@@ -4,6 +4,8 @@ import { Brain, LayoutDashboard, Settings, FolderKanban, CheckSquare } from 'luc
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { UserNav } from './user-nav';
+import { LanguageSwitcher } from '../language-switcher';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -17,11 +19,15 @@ export function Sidebar() {
 
   return (
     <div className="flex h-full flex-col gap-y-5">
-      <div className="flex h-16 shrink-0 items-center px-6">
+      <div className="flex h-16 shrink-0 items-center px-6 justify-between">
         <Link href="/dashboard" className="flex items-center space-x-2">
           <Brain className="h-6 w-6" />
           <span className="font-semibold">AI PM</span>
         </Link>
+        <div className="flex items-center space-x-4">
+          <LanguageSwitcher />
+          <UserNav />
+        </div>
       </div>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">

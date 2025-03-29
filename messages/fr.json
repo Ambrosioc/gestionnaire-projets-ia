@@ -1,0 +1,111 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "success": "Opération réussie",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Déjà un compte ?"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "projects": "Projets",
+    "tasks": "Tâches",
+    "settings": "Paramètres"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "stats": {
+      "activeProjects": "Projets actifs",
+      "completedTasks": "Tâches complétées",
+      "completedProjects": "Projets terminés",
+      "productivity": "Productivité"
+    },
+    "overview": {
+      "title": "Tâches par jour",
+      "noData": "Aucune donnée disponible"
+    },
+    "recentProjects": {
+      "title": "Projets récents",
+      "noProjects": "Aucun projet récent"
+    }
+  },
+  "projects": {
+    "title": "Projets",
+    "new": "Nouveau projet",
+    "name": "Nom du projet",
+    "description": "Description",
+    "status": "Statut",
+    "brief": "Brief",
+    "aiDescription": "Description IA",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce projet ?",
+    "deleteWarning": "Cette action ne peut pas être annulée"
+  },
+  "tasks": {
+    "title": "Tâches",
+    "new": "Nouvelle tâche",
+    "name": "Nom de la tâche",
+    "description": "Description",
+    "status": "Statut",
+    "priority": "Priorité",
+    "deadline": "Date limite",
+    "project": "Projet",
+    "tags": "Étiquettes",
+    "filters": {
+      "status": "Filtrer par statut",
+      "priority": "Filtrer par priorité",
+      "deadline": "Filtrer par date limite",
+      "search": "Rechercher une tâche"
+    },
+    "priorities": {
+      "low": "Basse",
+      "medium": "Moyenne",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "statuses": {
+      "todo": "À faire",
+      "inProgress": "En cours",
+      "review": "En révision",
+      "done": "Terminé"
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Gérez vos préférences et paramètres de compte",
+    "profile": {
+      "title": "Informations personnelles",
+      "subtitle": "Mettez à jour vos informations personnelles",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "weeklyReport": "Rapport hebdomadaire",
+      "weeklyReportDesc": "Recevez un résumé hebdomadaire de votre activité par email",
+      "push": "Notifications push",
+      "pushDesc": "Recevez des notifications pour les tâches importantes et les deadlines"
+    },
+    "danger": {
+      "title": "Zone de danger",
+      "subtitle": "Actions irréversibles pour votre compte",
+      "deleteAccount": "Supprimer mon compte",
+      "deleteConfirm": "Êtes-vous absolument sûr ?",
+      "deleteWarning": "Cette action est irréversible. Toutes vos données seront définitivement supprimées."
+    }
+  }
+}
