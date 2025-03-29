@@ -25,7 +25,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { supabase } from '@/lib/supabase';
 import { toast } from 'sonner';
-import { generateProjectDescription } from '@/lib/openai';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Le nom est requis'),
@@ -58,7 +57,19 @@ export function CreateProjectDialog({
       setIsLoading(true);
 
       // Generate AI description
-      const aiDescription = await generateProjectDescription(values.description);
+      let aiDescription = '';
+      try {
+        const res = await fetch('/api/generate-description', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ description: values.description }),
+        });
+        const data = await res.json();
+        aiDescription = data.ai_description || '';
+      } catch (err) {
+        console.error('Erreur IA', err);
+        toast.warning("La description IA n'a pas pu être générée.");
+      }
 
       // Create project
       const { data: project, error: projectError } = await supabase

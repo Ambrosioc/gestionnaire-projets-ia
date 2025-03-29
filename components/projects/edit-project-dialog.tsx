@@ -1,9 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -24,8 +20,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { supabase } from '@/lib/supabase';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { generateProjectDescription } from '@/lib/openai';
+import * as z from 'zod';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Le nom est requis'),
@@ -70,7 +69,14 @@ export function EditProjectDialog({
       // Generate new AI description if description changed
       let aiDescription = project.ai_description;
       if (values.description !== project.description) {
-        aiDescription = await generateProjectDescription(values.description);
+        const res = await fetch('/api/generate-description', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ description: values.description }),
+        });
+
+        const data = await res.json();
+        aiDescription = data.ai_description || '';
       }
 
       const updates: any = {
@@ -82,7 +88,7 @@ export function EditProjectDialog({
       // Upload new brief if provided
       if (values.brief) {
         const fileName = `${project.id}/${values.brief.name}`;
-        
+
         // Delete old brief if exists
         if (project.brief_url) {
           await supabase.storage
