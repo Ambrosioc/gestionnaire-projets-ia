@@ -1,9 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -24,7 +20,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { supabase } from '@/lib/supabase';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import * as z from 'zod';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Le nom est requis'),
@@ -64,7 +64,10 @@ export function CreateProjectDialog({
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ description: values.description }),
         });
+
         const data = await res.json();
+        if (!res.ok) {
+        }
         aiDescription = data.ai_description || '';
       } catch (err) {
         console.error('Erreur IA', err);
